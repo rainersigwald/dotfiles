@@ -1,0 +1,21 @@
+#!/bin/bash
+
+rm_args=""
+target_paths=""
+
+for arg in "$@"; do
+    case $1 in
+        /s )   rm_args="$rm_args -r"
+               ;;
+        /q )   rm_args="$rm_args -f"
+               ;;
+        /s/q ) rm_args="-rf"
+               ;;
+        * )    target_paths="$target_paths $1"
+               ;;
+    esac
+    shift
+done
+
+echo "rm $rm_args $target_paths"
+rm $rm_args $target_paths
