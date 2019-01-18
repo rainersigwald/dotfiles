@@ -15,7 +15,7 @@ if ($nameOrUrl.StartsWith("https://github.com/")) {
     $relativeFolder = $nameOrUrl.Substring("https://github.com/".Length)
 }
 
-if (($nameOrUrl -match '^https://(?<org>\w+)\.visualstudio\.com/(?<project>[^/]+)/_workitems/(?:edit/)?(?<number>\d+)(?:\?.*)?') -or
+if (($nameOrUrl -match '^https://(?<org>\w+)\.visualstudio\.com/(?:DefaultCollection/)?(?<project>[^/]+)/_workitems/(?:edit/)?(?<number>\d+)(?:\?.*)?') -or
     ($nameOrUrl -match '^https://dev\.azure\.com/(?<org>[^/]+)/(?<project>[^/]+)/_workitems/(?:edit/)?(?<number>\d+)(?:\?.*)?')) {
     $relativeFolder = [IO.Path]::Combine( $Matches.org, $Matches.project, $Matches.number )
 }
