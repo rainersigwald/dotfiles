@@ -9,11 +9,11 @@ scoop install ripgrep
 scoop install fd
 
 scoop install fzf
-setx FZF_DEFAULT_COMMAND "fd --type file --hidden --no-ignore"
+setx FZF_DEFAULT_COMMAND "fd --type file --hidden --no-ignore --no-ignore-vcs"
 
 scoop install bat
 New-Item -path $(Split-Path $(bat --config-file)) -ItemType Directory
-New-Item -Path $(bat --config-file) -Value "--map-syntax proj:xml`n--map-syntax targets:xml`n--map-syntax props:xml`n--no-ignore-vcs"
+New-Item -Path $(bat --config-file) -Value "--map-syntax proj:xml`n--map-syntax targets:xml`n--map-syntax props:xml"
 
 # other utils
 scoop install less # bat wants it, useful in general
