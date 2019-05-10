@@ -39,3 +39,4 @@ git config --global core.pager "'C:\\Program Files\\Git\\usr\\bin\\perl.exe`" -I
 
 git config --global alias.lg "log --color --graph --date=human --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit"
 git config --global alias.publish "!git push --set-upstream origin `$(git rev-parse --abbrev-ref HEAD)"
+git config --global alias.newbranch "!git checkout --no-track -b `$1 Microsoft/master  && :"
