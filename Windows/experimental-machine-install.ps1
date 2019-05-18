@@ -35,7 +35,7 @@ git config --global user.email "raines@microsoft.com"
 Invoke-WebRequest -Uri https://raw.githubusercontent.com/so-fancy/diff-so-fancy/v1.2.0/diff-so-fancy -OutFile $env:USERPROFILE\scoop\shims\diff-so-fancy
 New-Item -ItemType Directory $env:USERPROFILE\scoop\shims\lib
 Invoke-WebRequest -Uri https://raw.githubusercontent.com/so-fancy/diff-so-fancy/v1.2.0/lib/DiffHighlight.pm -OutFile $env:USERPROFILE\scoop\shims\lib\DiffHighlight.pm
-git config --global core.pager "'C:\\Program Files\\Git\\usr\\bin\\perl.exe`" -I '$env:USERPROFILE\\scoop\\shims\\lib' `"$env:USERPROFILE\\scoop\\shims\\diff-so-fancy`""
+git config --global --add core.pager "'C:\\Program Files\\Git\\usr\\bin\\perl.exe' -I '$env:USERPROFILE\\scoop\\shims\\lib' '$env:USERPROFILE\\scoop\\shims\\diff-so-fancy'"
 
 git config --global alias.lg "log --color --graph --date=human --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit"
 git config --global alias.publish "!git push --set-upstream origin `$(git rev-parse --abbrev-ref HEAD)"
