@@ -1,5 +1,7 @@
 # Install Scoop itself
 
+Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+
 Invoke-Expression (new-object net.webclient).downloadstring('https://get.scoop.sh')
 
 scoop bucket add extras
