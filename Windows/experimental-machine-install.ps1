@@ -25,6 +25,9 @@ New-Item -Path $(bat --config-file) -Value "--map-syntax proj:xml`n--map-syntax 
 # other utils
 scoop install less # bat wants it, useful in general
 
+# .NET development
+scoop install ilspy
+
 # Azure CLI
 scoop install azure-cli
 
