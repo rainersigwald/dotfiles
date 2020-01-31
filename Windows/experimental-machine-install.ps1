@@ -4,6 +4,11 @@ Set-ExecutionPolicy RemoteSigned -scope CurrentUser
 
 Invoke-Expression (new-object net.webclient).downloadstring('https://get.scoop.sh')
 
+if ($null -eq (Get-Command "git.exe" -ErrorAction SilentlyContinue))
+{
+   Write-Error "Install git manually before running this script: https://git-scm.com/download/win"
+}
+
 scoop bucket add extras
 
 # oreutils
