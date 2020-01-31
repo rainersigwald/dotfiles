@@ -1,0 +1,7 @@
+[character]
+symbol = "$"
+
+[env_var]
+variable = "MSBUILDDEBUGONSTART"
+prefix = "MSBUILDDEBUGONSTART="
+style = "underline bg:red"
