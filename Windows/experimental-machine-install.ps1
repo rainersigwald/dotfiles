@@ -27,6 +27,8 @@ scoop install less # bat wants it, useful in general
 
 scoop install starship
 
+scoop install hub
+
 # .NET development
 scoop install ilspy
 
