@@ -44,6 +44,9 @@ az extension add --name azure-devops
 
 # Git
 
+scoop install posh-git
+Add-PoshGitToProfile -AllHosts
+
 git config --global user.name "Rainer Sigwald"
 git config --global user.email "raines@microsoft.com"
 
