@@ -50,6 +50,10 @@ Add-PoshGitToProfile -AllHosts
 git config --global user.name "Rainer Sigwald"
 git config --global user.email "raines@microsoft.com"
 
+git config --global merge.conflictstyle diff3
+
+git config --global rebase.autosquash true
+
 # # Note: diff-so-fancy locked to 1.2.0
 # Invoke-WebRequest -Uri https://raw.githubusercontent.com/so-fancy/diff-so-fancy/v1.2.0/diff-so-fancy -OutFile $env:USERPROFILE\scoop\shims\diff-so-fancy
 # New-Item -ItemType Directory $env:USERPROFILE\scoop\shims\lib
