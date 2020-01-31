@@ -29,6 +29,8 @@ scoop install starship
 
 scoop install hub
 
+scoop install hyperfine
+
 # .NET development
 scoop install ilspy
 
