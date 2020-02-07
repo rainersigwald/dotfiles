@@ -28,6 +28,7 @@ scoop install less # bat wants it, useful in general
 scoop install starship
 
 scoop install hub
+git config --global hub.protocol https
 
 scoop install hyperfine
 
