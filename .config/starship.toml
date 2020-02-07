@@ -5,3 +5,6 @@ symbol = "$"
 variable = "MSBUILDDEBUGONSTART"
 prefix = "MSBUILDDEBUGONSTART="
 style = "underline bg:red"
+
+[git_branch]
+symbol = ""
