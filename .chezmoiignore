@@ -1,0 +1,8 @@
+LICENSE
+README.md
+
+{{ if eq .chezmoi.os "windows" -}}
+bin/
+{{ end -}}
+
+Windows
