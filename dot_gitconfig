@@ -1,0 +1,19 @@
+[user]
+	name = Rainer Sigwald
+	email = raines@microsoft.com
+[core]
+	pager = delta --dark
+[alias]
+	lg = log --color --graph --date=human --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit
+	publish = !git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+	newbranch = !git checkout --no-track -b $1 upstream/master  && :
+[winUpdater]
+	recentlySeenVersion = 2.25.1.windows.1
+[merge]
+	conflictstyle = diff3
+[rebase]
+	autosquash = true
+[hub]
+	protocol = https
+[help]
+	autocorrect = 20
