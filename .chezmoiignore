@@ -5,4 +5,10 @@ README.md
 bin/
 {{ end -}}
 
+{{ if ne .chezmoi.os "windows" -}}
+AppData
+Documents
+bin/*.ps1
+{{ end -}}
+
 Windows
