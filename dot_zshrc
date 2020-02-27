@@ -1,0 +1,3 @@
+path+=~/.dotnet/tools
+
+eval "$(starship init zsh)"
