@@ -15,3 +15,6 @@ if ($host.Name -eq 'ConsoleHost')
 
     Set-PSReadlineKeyHandler -Chord Tab -Function MenuComplete
 }
+
+. ~\scoop\apps\fd\current\_fd.ps1
+. ~\scoop\apps\ripgrep\current\_rg.ps1
