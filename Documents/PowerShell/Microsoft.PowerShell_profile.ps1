@@ -8,3 +8,10 @@ Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
            [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
         }
 }
+
+if ($host.Name -eq 'ConsoleHost')
+{
+    Import-Module PSReadLine
+
+    Set-PSReadlineKeyHandler -Chord Tab -Function MenuComplete
+}
