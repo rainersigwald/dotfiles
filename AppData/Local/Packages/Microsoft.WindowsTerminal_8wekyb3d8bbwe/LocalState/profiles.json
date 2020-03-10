@@ -13,7 +13,7 @@
             {
                 "guid": "{498CF145-9C1B-4F5C-872E-610CB9481A18}",
                 "name": "Developer PowerShell",
-                "commandline": "cmd /k \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Preview\\Common7\\Tools\\VsDevCmd.bat\" && pwsh.exe -NoLogo",
+                "commandline": "cmd /c \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Preview\\Common7\\Tools\\VsDevCmd.bat\" && pwsh.exe -NoLogo",
                 "startingDirectory": "S:\\msbuild"
             },
             {
