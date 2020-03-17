@@ -23,4 +23,3 @@ function FdWithMyArguments {
 Set-Alias -Name fd -Value FdWithMyArguments
 
 . ~\scoop\apps\fd\current\_fd.ps1
-. ~\scoop\apps\ripgrep\current\_rg.ps1
