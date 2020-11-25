@@ -3,6 +3,8 @@
 	email = raines@microsoft.com
 [core]
 	pager = delta --dark
+[interactive]
+    diffFilter = delta --color-only
 [alias]
 	lg = log --color --graph --date=human --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit
 	publish = !git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
