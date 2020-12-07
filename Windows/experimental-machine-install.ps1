@@ -9,44 +9,15 @@ if ($null -eq (Get-Command "git.exe" -ErrorAction SilentlyContinue))
    Write-Error "Install git manually before running this script: https://git-scm.com/download/win"
 }
 
-scoop bucket add extras
-
-# oreutils
-scoop install ripgrep
-scoop install fd
-
-scoop install fzf
 setx FZF_DEFAULT_COMMAND "fd --type file --hidden --no-ignore --no-ignore-vcs"
 
-scoop install bat
 New-Item -path $(Split-Path $(bat --config-file)) -ItemType Directory
 New-Item -Path $(bat --config-file) -Value "--map-syntax proj:xml`n--map-syntax targets:xml`n--map-syntax props:xml"
-
-# other utils
-scoop install less # bat wants it, useful in general
-
-scoop install starship
-
-scoop install hub
-git config --global hub.protocol https
-
-scoop install hyperfine
-
-# .NET development
-scoop install ilspy
-
-# Azure CLI
-scoop install azure-cli
-
-az extension add --name azure-devops
 
 # az devops configure --defaults organization=https://dev.azure.com/devdiv
 # az devops configure --defaults project=DevDiv
 
 # Git
-
-scoop install posh-git
-Add-PoshGitToProfile -AllHosts
 
 git config --global user.name "Rainer Sigwald"
 git config --global user.email "raines@microsoft.com"
