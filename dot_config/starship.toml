@@ -3,7 +3,7 @@ symbol = "$"
 
 [env_var]
 variable = "MSBUILDDEBUGONSTART"
-prefix = "MSBUILDDEBUGONSTART="
+format = "[DebugOnStart]($style)"
 style = "underline bg:red"
 
 [git_branch]
