@@ -1,3 +1,5 @@
+{{ if eq .chezmoi.os "windows" -}}
+
 scoop install ^
     azure-cli ^
     bat ^
@@ -18,3 +20,5 @@ scoop install ^
     sysinternals
 
 az extension add --name azure-devops
+
+{{ end -}}
