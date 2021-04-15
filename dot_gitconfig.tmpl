@@ -8,7 +8,7 @@
 [alias]
 	lg = log --color --graph --date=human --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit
 	publish = !git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
-	newbranch = !git checkout --no-track -b $1 upstream/master  && :
+	newbranch = !git checkout --no-track -b $1 upstream/main  && :
 
 {{ if eq .chezmoi.os "darwin" -}}
 [credential]
