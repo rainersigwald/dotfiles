@@ -18,6 +18,13 @@
                 "startingDirectory": "S:\\msbuild"
             },
             {
+                "commandline": "cmd /c \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\Tools\\VsDevCmd.bat\" && pwsh.exe -NoLogo",
+                "guid": "{234075c3-d9c9-40c2-9e67-e20c4f1f0c93}",
+                "icon": "C:\\Users\\raines\\Documents\\vspre.png",
+                "name": "Developer PowerShell 17",
+                "startingDirectory": "S:\\msbuild"
+            },
+            {
                 // Make changes here to the cmd.exe profile
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "name": "cmd",
