@@ -6,7 +6,7 @@
     "wordDelimiters": " \"';<>?\u2502",
     "profiles": {
         "defaults": {
-            "fontFace": "JetBrains Mono",
+            "fontFace": "Iosevka Term",
             "fontSize": 11
         },
         "list": [
