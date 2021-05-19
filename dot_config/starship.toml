@@ -1,6 +1,3 @@
-[character]
-success_symbol = '\$'
-
 [env_var]
 variable = "MSBUILDDEBUGONSTART"
 format = "[DebugOnStart]($style)"
