@@ -25,6 +25,10 @@
                 "startingDirectory": "S:\\msbuild"
             },
             {
+                "commandline": "gsudo.exe C:\\Windows\\SysWOW64\\cmd.exe /k cd /d \"S:\\VS\" && src\\tools\\razzle.cmd chk no_oacr no_opt",
+                "name": "VS-cmd-chk"
+            },
+            {
                 // Make changes here to the cmd.exe profile
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "name": "cmd",
