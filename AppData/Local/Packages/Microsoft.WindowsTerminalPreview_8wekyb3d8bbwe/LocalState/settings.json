@@ -2,7 +2,7 @@
 // For documentation on these settings, see: https://aka.ms/terminal-documentation
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "defaultProfile": "{498CF145-9C1B-4F5C-872E-610CB9481A18}",
+    "defaultProfile": "{234075c3-d9c9-40c2-9e67-e20c4f1f0c93}",
     "wordDelimiters": " \"';<>?\u2502",
     "profiles": {
         "defaults": {
