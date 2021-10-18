@@ -1,3 +1,8 @@
+# Case insensitive tab complete
+# see https://stackoverflow.com/a/24237590
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+autoload -Uz compinit && compinit
+
 path+=~/bin
 path+=~/.dotnet/tools
 
