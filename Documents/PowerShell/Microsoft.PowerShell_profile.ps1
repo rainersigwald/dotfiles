@@ -22,7 +22,7 @@ function FdWithMyArguments {
 
 Set-Alias -Name fd -Value FdWithMyArguments
 
-. ~\scoop\apps\fd\current\_fd.ps1
+. ~\scoop\apps\fd\current\autocomplete\_fd.ps1
 
 Invoke-Expression (& {
     $hook = if ($PSVersionTable.PSVersion.Major -lt 6) { 'prompt' } else { 'pwd' }
