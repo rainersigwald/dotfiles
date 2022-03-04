@@ -24,6 +24,17 @@ Set-Alias -Name fd -Value FdWithMyArguments
 
 . ~\scoop\apps\fd\current\autocomplete\_fd.ps1
 
+function ToggleMSBuildDebug {
+    if ($env:MSBUILDDEBUGONSTART -eq 1) {
+        $env:MSBUILDDEBUGONSTART = $null
+    }
+    else {
+        $env:MSBUILDDEBUGONSTART = 1
+    }
+}
+
+Set-Alias -name msbd -Value Toggle-MSBuildDebug
+
 Invoke-Expression (& {
     $hook = if ($PSVersionTable.PSVersion.Major -lt 6) { 'prompt' } else { 'pwd' }
     (zoxide init --hook $hook powershell) -join "`n"
