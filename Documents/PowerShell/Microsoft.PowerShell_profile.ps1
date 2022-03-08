@@ -33,7 +33,7 @@ function ToggleMSBuildDebug {
     }
 }
 
-Set-Alias -name msbd -Value Toggle-MSBuildDebug
+Set-Alias -name msbd -Value ToggleMSBuildDebug
 
 Invoke-Expression (& {
     $hook = if ($PSVersionTable.PSVersion.Major -lt 6) { 'prompt' } else { 'pwd' }
