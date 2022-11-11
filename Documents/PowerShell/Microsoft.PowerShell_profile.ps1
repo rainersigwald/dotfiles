@@ -22,7 +22,7 @@ function FdWithMyArguments {
 
 Set-Alias -Name fd -Value FdWithMyArguments
 
-. ~\scoop\apps\fd\current\autocomplete\_fd.ps1
+. ~\scoop\apps\fd\current\autocomplete\fd.ps1
 
 function ToggleMSBuildDebug {
     if ($env:MSBUILDDEBUGONSTART -eq 1) {
