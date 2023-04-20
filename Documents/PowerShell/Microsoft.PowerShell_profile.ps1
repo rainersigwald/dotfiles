@@ -24,6 +24,12 @@ Set-Alias -Name fd -Value FdWithMyArguments
 
 . ~\scoop\apps\fd\current\autocomplete\fd.ps1
 
+function TaskWarriorInWsl {
+    wsl task $args
+}
+
+Set-Alias -Name task -Value TaskWarriorInWsl
+
 function ToggleMSBuildDebug {
     if ($env:MSBUILDDEBUGONSTART -eq 1) {
         $env:MSBUILDDEBUGONSTART = $null
