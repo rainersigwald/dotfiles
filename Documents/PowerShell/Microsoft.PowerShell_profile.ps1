@@ -30,6 +30,41 @@ function TaskWarriorInWsl {
 
 Set-Alias -Name task -Value TaskWarriorInWsl
 
+function IsBuildyProcess {
+    param([System.Diagnostics.Process] $process)
+    
+    $processName = $process.Name
+
+    if ($processName -match "(MSBuild|vbcscompiler)\.exe") {
+        return $true
+    }
+
+    # is it a dotnet msbuild or vbcscompiler process?
+    if ($processName -eq "dotnet") {
+        $commandLine = $process.CommandLine
+        if ($commandLine -match "MSBuild|vbcscompiler") {
+            return $true
+        }
+    }
+}
+
+function Stop-BuildyProcesses {
+    [CmdletBinding(SupportsShouldProcess)]
+    param()
+
+    if ($PSCmdlet.ShouldProcess($(Get-Command "dotnet"), "build-server shutdown")) {
+        dotnet.exe build-server shutdown
+    }
+
+    $processes = Get-Process | Where-Object { IsBuildyProcess $_ }
+
+    if ($null -ne $processes) {
+        Stop-Process -InputObject $processes -Force -Verbose -WhatIf:$WhatIfPreference
+    }
+}
+
+Set-Alias -name kill -value Stop-BuildyProcesses
+
 function ToggleMSBuildDebug {
     if ($env:MSBUILDDEBUGONSTART -eq 1) {
         $env:MSBUILDDEBUGONSTART = $null
