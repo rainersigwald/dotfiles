@@ -32,17 +32,17 @@ Set-Alias -Name task -Value TaskWarriorInWsl
 
 function IsBuildyProcess {
     param([System.Diagnostics.Process] $process)
-    
+
     $processName = $process.Name
 
-    if ($processName -match "(MSBuild|vbcscompiler)\.exe") {
+    if ($processName -match "(MSBuild|VBCSCompiler)") {
         return $true
     }
 
     # is it a dotnet msbuild or vbcscompiler process?
     if ($processName -eq "dotnet") {
         $commandLine = $process.CommandLine
-        if ($commandLine -match "MSBuild|vbcscompiler") {
+        if ($commandLine -match "MSBuild|VBCSCompiler") {
             return $true
         }
     }
