@@ -105,7 +105,7 @@ function New-Repro {
 
     git.exe init .
 
-    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/github/gitignore/master/VisualStudio.gitignore" -OutFile ".gitignore"
+    dotnet new gitignore
 
     git.exe add (Join-Path $fullPath ".gitignore")
 
