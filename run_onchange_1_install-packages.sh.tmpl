@@ -1,0 +1,22 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/sh
+
+{{ else if eq .chezmoi.os "darwin" -}}
+#!/bin/sh
+brew install \
+    bat \
+    fd \
+    fzf \
+    gh \
+    git-delta \
+    hyperfine \
+    jq \
+    ripgrep \
+    starship \
+    zoxide \
+
+brew install --cask \
+    iterm2 \
+    visual-studio-code \
+
+{{ end -}}
