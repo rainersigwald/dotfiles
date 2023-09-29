@@ -35,7 +35,7 @@ function IsBuildyProcess {
 
     $processName = $process.Name
 
-    if ($processName -match "(MSBuild|VBCSCompiler)") {
+    if ($processName -match "(MSBuild|VBCSCompiler|vsjitdebugger)") {
         return $true
     }
 
