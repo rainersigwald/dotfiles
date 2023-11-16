@@ -35,14 +35,14 @@ function IsBuildyProcess {
 
     $processName = $process.Name
 
-    if ($processName -match "(MSBuild|VBCSCompiler)") {
+    if ($processName -match "(MSBuild|VBCSCompiler|vsjitdebugger)") {
         return $true
     }
 
-    # is it a dotnet msbuild or vbcscompiler process?
+    # is it a dotnet msbuild or vbcscompiler process, or a test runner?
     if ($processName -eq "dotnet") {
         $commandLine = $process.CommandLine
-        if ($commandLine -match "MSBuild|VBCSCompiler") {
+        if ($commandLine -match "MSBuild|VBCSCompiler|xunit") {
             return $true
         }
     }
