@@ -4,11 +4,24 @@
 [core]
 	editor = code --wait
 	pager = delta --dark --relative-paths
+[diff]
+	external = difft
+	tool = difftastic
+
+[difftool]
+	prompt = false
+
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
+
+[pager]
+	difftool = true
 [init]
 	defaultBranch = main
 [interactive]
     diffFilter = delta --color-only
 [alias]
+	dt = difftool
 	lg = log --color --graph --date=human --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit
 	publish = !git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
 	newbranch = !git checkout --no-track -b $1 upstream/main  && :
