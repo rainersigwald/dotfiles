@@ -6,4 +6,6 @@ autoload -Uz compinit && compinit
 path+=~/bin
 path+=~/.dotnet/tools
 
+export MSBUILDTERMINALLOGGER=auto
+
 eval "$(starship init zsh)"
