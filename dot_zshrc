@@ -4,8 +4,13 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 autoload -Uz compinit && compinit
 
 path+=~/bin
+path+=~/.cargo/bin
 path+=~/.dotnet/tools
 
 export MSBUILDTERMINALLOGGER=auto
 
 eval "$(starship init zsh)"
+
+eval "$(atuin init zsh --disable-up-arrow)"
+
+eval "$(zoxide init zsh)"
