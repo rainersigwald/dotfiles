@@ -1,0 +1,4 @@
+{{ if eq .chezmoi.osRelease.id "ubuntu" -}}
+#!/bin/sh
+
+curl -sS https://starship.rs/install.sh | sh
