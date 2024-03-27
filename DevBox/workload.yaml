@@ -1,0 +1,18 @@
+$schema: "1.0"
+name: "raines-devbox-customization"
+tasks:
+  - name: choco
+    parameters:
+      package: vscode
+  - name: choco
+    parameters:
+      package: chezmoi
+  - name: git-clone
+    description: Clone MSBuild
+    parameters:
+      repositoryUrl: https://github.com/dotnet/msbuild.git
+      directory: C:\src\
+  - name: powershell
+    description: 'chezmoi init'
+    parameters:
+      command: "chezmoi init --apply rainersigwald"
