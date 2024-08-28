@@ -151,7 +151,6 @@ try {
 
         if (-not $env:ATUIN_HISTORY_ID) {
             $env:ATUIN_HISTORY_ID = (atuin history start -- $line | Out-String).Trim()
-            $global:ATUIN_HISTORY_ELAPSED = [System.Diagnostics.Stopwatch]::StartNew()
         }
 
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
@@ -161,9 +160,7 @@ try {
     Remove-Item -Path Function:\prompt
     function prompt {
         if ($env:ATUIN_HISTORY_ID) {
-            $durationNs = $global:ATUIN_HISTORY_ELAPSED.ElapsedTicks * 100
-            $exitCode = $LASTEXITCODE
-            atuin history end --duration $durationNs --exit $exitCode -- $env:ATUIN_HISTORY_ID | Out-Null
+            atuin history end --duration (Get-History -Count 1).Duration.TotalNanoseconds --exit $LASTEXITCODE -- $env:ATUIN_HISTORY_ID | Out-Null
 
             Remove-Item -Path env:ATUIN_HISTORY_ID -ErrorAction SilentlyContinue
         }
