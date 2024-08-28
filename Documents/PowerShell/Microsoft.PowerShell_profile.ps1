@@ -133,3 +133,44 @@ Invoke-Expression (& {
     $hook = if ($PSVersionTable.PSVersion.Major -lt 6) { 'prompt' } else { 'pwd' }
     (zoxide init --hook $hook powershell) -join "`n"
 })
+
+## Experimental Atuin stuff
+
+try {
+    Get-Command atuin -ErrorAction Stop
+
+    # Atuin must exist so register history via https://github.com/atuinsh/atuin/issues/84#issuecomment-2053600939
+
+    $env:ATUIN_SESSION = (atuin uuid | Out-String).Trim()
+    $env:ATUIN_HISTORY_ID = $null
+
+    Set-PSReadLineKeyHandler -Chord Enter -ScriptBlock {
+        $line = $null
+        $cursor = $null
+        [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
+
+        if (-not $env:ATUIN_HISTORY_ID) {
+            $env:ATUIN_HISTORY_ID = (atuin history start -- $line | Out-String).Trim()
+            $global:ATUIN_HISTORY_ELAPSED = [System.Diagnostics.Stopwatch]::StartNew()
+        }
+
+        [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+    }
+
+    $existingPromptFunction = Get-Item -Path Function:\prompt
+    Remove-Item -Path Function:\prompt
+    function prompt {
+        if ($env:ATUIN_HISTORY_ID) {
+            $durationNs = $global:ATUIN_HISTORY_ELAPSED.ElapsedTicks * 100
+            $exitCode = $LASTEXITCODE
+            atuin history end --duration $durationNs --exit $exitCode -- $env:ATUIN_HISTORY_ID | Out-Null
+
+            Remove-Item -Path env:ATUIN_HISTORY_ID -ErrorAction SilentlyContinue
+        }
+
+        & $existingPromptFunction.ScriptBlock
+    }
+}
+catch {
+    # Atuin is not installed; do nothing
+}
