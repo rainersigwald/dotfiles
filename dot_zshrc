@@ -7,6 +7,8 @@ path+=~/bin
 path+=~/.cargo/bin
 path+=~/.dotnet/tools
 
+alias fd="fd --no-ignore"
+
 export MSBUILDTERMINALLOGGER=auto
 
 eval "$(starship init zsh)"
