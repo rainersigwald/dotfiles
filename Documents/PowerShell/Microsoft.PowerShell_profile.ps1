@@ -152,6 +152,11 @@ function ToggleMSBuildDebug {
 
 Set-Alias -name msbd -Value ToggleMSBuildDebug
 
+$tryRsPath = "$env:APPDATA\try-rs\try-rs.ps1"
+if (Test-Path $tryRsPath) {
+    . $tryRsPath
+}
+
 Invoke-Expression (& {
     $hook = if ($PSVersionTable.PSVersion.Major -lt 6) { 'prompt' } else { 'pwd' }
     (zoxide init --hook $hook powershell) -join "`n"
