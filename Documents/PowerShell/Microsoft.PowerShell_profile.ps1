@@ -65,6 +65,29 @@ function Stop-BuildyProcesses {
 
 Set-Alias -name kill -value Stop-BuildyProcesses
 
+function Get-LatestDotNetSdkVersion {
+    <#
+    .SYNOPSIS
+    Gets the latest daily SDK version for a specific .NET channel.
+    
+    .EXAMPLE
+    Get-DotNetSdkVersion -Channel 10.0.3xx
+    #>
+    param (
+        [Parameter(Mandatory = $true, HelpMessage = "The .NET channel/feature band (e.g. 10.0.3xx)")]
+        [ArgumentCompletions('10.0.1xx', '10.0.3xx', '11.0.1xx', '11.0.1xx-preview.2')]
+        [string]$Channel
+    )
+
+    $response = Invoke-RestMethod "https://aka.ms/dotnet/$Channel/daily/productCommit-win-x64.txt"
+
+    if ($response -match 'sdk_version="([^"]+)"') {
+        $Matches[1]
+    } else {
+        Write-Warning "Could not find sdk_version for channel '$Channel'"
+    }
+}
+
 function New-Repro {
     [CmdletBinding()]
     param (
