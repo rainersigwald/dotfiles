@@ -9,6 +9,10 @@ path+=~/.dotnet/tools
 
 alias fd="fd --no-ignore"
 
+dir() {
+  ls "$@"
+}
+
 export MSBUILDTERMINALLOGGER=auto
 
 # zsh parameter completion for the dotnet CLI
