@@ -39,6 +39,8 @@ rd() {
 
 export MSBUILDTERMINALLOGGER=auto
 
+export DOTNET_CLI_USE_MSBUILD_SERVER=true
+
 # zsh parameter completion for the dotnet CLI
 
 _dotnet_zsh_complete()
