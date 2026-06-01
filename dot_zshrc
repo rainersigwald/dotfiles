@@ -9,8 +9,32 @@ path+=~/.dotnet/tools
 
 alias fd="fd --no-ignore"
 
+# Windows CLI compat
 dir() {
   ls "$@"
+}
+
+cls() {
+  clear
+}
+
+md() {
+  mkdir -p "$@"
+}
+
+rd() {
+  local rm_args=""
+  local target_paths=()
+  for arg in "$@"; do
+    case $arg in
+      /s)   rm_args="$rm_args -r" ;;
+      /q)   rm_args="$rm_args -f" ;;
+      /s/q) rm_args="-rf" ;;
+      *)    target_paths+=("$arg") ;;
+    esac
+  done
+  echo "rm $rm_args ${target_paths[@]}"
+  rm ${=rm_args} "${target_paths[@]}"
 }
 
 export MSBUILDTERMINALLOGGER=auto
