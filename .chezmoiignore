@@ -1,13 +1,16 @@
 LICENSE
 README.md
 
+# Synced into pwsh's $PROFILE directory by
+# run_onchange_after_powershell-profile.ps1.tmpl, not applied to ~/Documents.
+Documents
+
 {{ if eq .chezmoi.os "windows" -}}
 bin/
 {{ end -}}
 
 {{ if ne .chezmoi.os "windows" -}}
 AppData
-Documents
 bin/*.ps1
 {{ end -}}
 
