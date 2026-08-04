@@ -5,6 +5,7 @@ autoload -Uz compinit && compinit
 
 path+=~/bin
 path+=~/.cargo/bin
+path+=~/.dotnetup
 path+=~/.dotnet/tools
 
 alias fd="fd --no-ignore"
