@@ -38,9 +38,7 @@ rd() {
   rm ${=rm_args} "${target_paths[@]}"
 }
 
-export MSBUILDTERMINALLOGGER=auto
-
-export DOTNET_CLI_USE_MSBUILD_SERVER=true
+export MSBUILDFORCEMULTITHREADED=1
 
 eval "$(dotnet completions script zsh)"
 
