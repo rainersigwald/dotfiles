@@ -45,7 +45,23 @@ else
     echo "dotnetup not installed -- curl -fsSL https://aka.ms/dotnet/dotnetup/preview/get-dotnetup.sh | bash"
 fi
 
-eval "$(dotnet completions script zsh)"
+# Run completions script outside of any working directory
+# that may have a global.json that keeps things cranky
+() {
+  local PWD tempdir script
+  local temp_root=${XDG_RUNTIME_DIR:-$TMPDIR}
+
+  [[ -n $temp_root && -d $temp_root && -O $temp_root ]] || return 1
+  tempdir=$(command mktemp -d "${temp_root%/}/dotnet-completions.XXXXXXXX") || return
+
+  {
+    builtin cd -q -- "$tempdir" || return
+    script=$(dotnet completions script zsh) || return
+    eval "$script"
+  } always {
+    command rm -rf -- "$tempdir"
+  }
+}
 
 eval "$(starship init zsh)"
 
