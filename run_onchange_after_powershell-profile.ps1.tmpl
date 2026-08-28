@@ -1,0 +1,26 @@
+#!/usr/bin/env pwsh
+# Copy every managed file under Documents/PowerShell into pwsh's profile
+# directory (the parent of $PROFILE.CurrentUserCurrentHost). The destination
+# follows PowerShell 7: the IT-redirected OneDrive Documents\PowerShell on
+# Windows, or ~/.config/powershell on macOS/Linux.
+#
+# This runs as an after_ script, so it executes after the package-install
+# scripts (e.g. brew install --cask powershell) have provisioned pwsh.
+#
+# Hashing every source file below makes this re-run whenever any of them change.
+{{ range (glob (joinPath .chezmoi.sourceDir "Documents" "PowerShell" "**")) -}}
+{{ if eq (stat .).type "file" -}}
+# {{ . }}: {{ include . | sha256sum }}
+{{ end -}}
+{{ end -}}
+
+$ErrorActionPreference = 'Stop'
+
+$sourceDir = {{ joinPath .chezmoi.sourceDir "Documents" "PowerShell" | squote }}
+$destinationDir = Split-Path -Parent $PROFILE.CurrentUserCurrentHost
+
+if (-not (Test-Path -LiteralPath $destinationDir)) {
+    New-Item -ItemType Directory -Path $destinationDir -Force | Out-Null
+}
+
+Copy-Item -Path (Join-Path $sourceDir '*') -Destination $destinationDir -Recurse -Force
