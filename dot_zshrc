@@ -48,19 +48,20 @@ fi
 # Run completions script outside of any working directory
 # that may have a global.json that keeps things cranky
 () {
-  local PWD tempdir script
-  local temp_root=${XDG_RUNTIME_DIR:-$TMPDIR}
+  local root=${XDG_RUNTIME_DIR:-$TMPDIR}
+  local dir script rc
 
-  [[ -n $temp_root && -d $temp_root && -O $temp_root ]] || return 1
-  tempdir=$(command mktemp -d "${temp_root%/}/dotnet-completions.XXXXXXXX") || return
+  [[ -n $root && -d $root && -O $root ]] || return 1
+  dir=$(mktemp -d "${root%/}/dotnet-completions.XXXXXXXX") || return
 
-  {
-    builtin cd -q -- "$tempdir" || return
-    script=$(dotnet completions script zsh) || return
-    eval "$script"
-  } always {
-    command rm -rf -- "$tempdir"
-  }
+  script=$(builtin cd -q -- "$dir" &&
+           dotnet completions script zsh)
+  rc=$?
+
+  command rm -rf -- "$dir"
+  (( rc == 0 )) || return "$rc"
+
+  eval "$script"
 }
 
 eval "$(starship init zsh)"
