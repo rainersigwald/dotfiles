@@ -98,6 +98,14 @@ resources:
     metadata:
       description: Install ILSpy
   - type: Microsoft.WinGet/Package
+    name: jj
+    properties:
+      id: jj-vcs.jj
+      source: winget
+      useLatest: false
+    metadata:
+      description: Install Jujutsu
+  - type: Microsoft.WinGet/Package
     name: jq
     properties:
       id: jqlang.jq
@@ -121,6 +129,14 @@ resources:
       useLatest: false
     metadata:
       description: Install NuGet
+  - type: Microsoft.WinGet/Package
+    name: PerfView
+    properties:
+      id: Microsoft.PerfView
+      source: winget
+      useLatest: false
+    metadata:
+      description: Install PerfView
   - type: Microsoft.WinGet/Package
     name: ripgrep
     properties:
