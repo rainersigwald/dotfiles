@@ -82,16 +82,6 @@ resources:
         securityContext: elevated
       description: Install GitHub CLI
   - type: Microsoft.WinGet/Package
-    name: gsudo
-    properties:
-      id: gerardog.gsudo
-      source: winget
-      useLatest: false
-    metadata:
-      winget:
-        securityContext: elevated
-      description: Install gsudo
-  - type: Microsoft.WinGet/Package
     name: hyperfine
     properties:
       id: sharkdp.hyperfine
@@ -207,3 +197,15 @@ resources:
       winget:
         securityContext: current
       description: Install PSFzf from PowerShell Gallery
+  - type: Microsoft.Windows/Registry
+    name: WindowsSudo
+    properties:
+      keyPath: HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Sudo
+      valueName: Enabled
+      valueData:
+        DWord: 1
+      _exist: true
+    metadata:
+      winget:
+        securityContext: elevated
+      description: Enable Windows sudo in a new window
