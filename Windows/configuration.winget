@@ -11,6 +11,8 @@ resources:
       source: winget
       useLatest: false
     metadata:
+      winget:
+        securityContext: elevated
       description: Install 7-Zip
   - type: Microsoft.WinGet/Package
     name: AzureCLI
@@ -19,6 +21,8 @@ resources:
       source: winget
       useLatest: false
     metadata:
+      winget:
+        securityContext: elevated
       description: Install Azure CLI
   - type: Microsoft.WinGet/Package
     name: AzureStorageExplorer
@@ -75,6 +79,8 @@ resources:
       source: winget
       useLatest: false
     metadata:
+      winget:
+        securityContext: elevated
       description: Install GitHub CLI
   - type: Microsoft.WinGet/Package
     name: Graphviz
@@ -83,6 +89,8 @@ resources:
       source: winget
       useLatest: false
     metadata:
+      winget:
+        securityContext: elevated
       description: Install Graphviz
   - type: Microsoft.WinGet/Package
     name: gsudo
@@ -91,6 +99,8 @@ resources:
       source: winget
       useLatest: false
     metadata:
+      winget:
+        securityContext: elevated
       description: Install gsudo
   - type: Microsoft.WinGet/Package
     name: hyperfine
@@ -147,6 +157,8 @@ resources:
       source: winget
       useLatest: false
     metadata:
+      winget:
+        securityContext: elevated
       description: Install Starship
   - type: Microsoft.WinGet/Package
     name: Sysinternals
