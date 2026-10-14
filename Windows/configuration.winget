@@ -1,0 +1,220 @@
+$schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/08/config/document.json
+metadata:
+  winget:
+    processor:
+      identifier: dscv3
+resources:
+  - type: Microsoft.WinGet/Package
+    name: SevenZip
+    properties:
+      id: 7zip.7zip
+      source: winget
+      useLatest: false
+    metadata:
+      winget:
+        securityContext: elevated
+      description: Install 7-Zip
+  - type: Microsoft.WinGet/Package
+    name: AzureCLI
+    properties:
+      id: Microsoft.AzureCLI
+      source: winget
+      useLatest: false
+    metadata:
+      winget:
+        securityContext: elevated
+      description: Install Azure CLI
+  - type: Microsoft.WinGet/Package
+    name: AzureStorageExplorer
+    properties:
+      id: Microsoft.Azure.StorageExplorer
+      source: winget
+      useLatest: false
+    metadata:
+      description: Install Azure Storage Explorer
+  - type: Microsoft.WinGet/Package
+    name: bat
+    properties:
+      id: sharkdp.bat
+      source: winget
+      useLatest: false
+    metadata:
+      description: Install bat
+  - type: Microsoft.WinGet/Package
+    name: delta
+    properties:
+      id: dandavison.delta
+      source: winget
+      useLatest: false
+    metadata:
+      description: Install delta
+  - type: Microsoft.WinGet/Package
+    name: difftastic
+    properties:
+      id: Wilfred.difftastic
+      source: winget
+      useLatest: false
+    metadata:
+      description: Install difftastic
+  - type: Microsoft.WinGet/Package
+    name: fd
+    properties:
+      id: sharkdp.fd
+      source: winget
+      useLatest: false
+    metadata:
+      description: Install fd
+  - type: Microsoft.WinGet/Package
+    name: fzf
+    properties:
+      id: junegunn.fzf
+      source: winget
+      useLatest: false
+    metadata:
+      description: Install fzf
+  - type: Microsoft.WinGet/Package
+    name: GitHubCLI
+    properties:
+      id: GitHub.cli
+      source: winget
+      useLatest: false
+    metadata:
+      winget:
+        securityContext: elevated
+      description: Install GitHub CLI
+  - type: Microsoft.WinGet/Package
+    name: Graphviz
+    properties:
+      id: Graphviz.Graphviz
+      source: winget
+      useLatest: false
+    metadata:
+      winget:
+        securityContext: elevated
+      description: Install Graphviz
+  - type: Microsoft.WinGet/Package
+    name: gsudo
+    properties:
+      id: gerardog.gsudo
+      source: winget
+      useLatest: false
+    metadata:
+      winget:
+        securityContext: elevated
+      description: Install gsudo
+  - type: Microsoft.WinGet/Package
+    name: hyperfine
+    properties:
+      id: sharkdp.hyperfine
+      source: winget
+      useLatest: false
+    metadata:
+      description: Install hyperfine
+  - type: Microsoft.WinGet/Package
+    name: ILSpy
+    properties:
+      id: icsharpcode.ILSpy
+      source: winget
+      useLatest: false
+    metadata:
+      description: Install ILSpy
+  - type: Microsoft.WinGet/Package
+    name: jq
+    properties:
+      id: jqlang.jq
+      source: winget
+      useLatest: false
+    metadata:
+      description: Install jq
+  - type: Microsoft.WinGet/Package
+    name: less
+    properties:
+      id: jftuga.less
+      source: winget
+      useLatest: false
+    metadata:
+      description: Install less
+  - type: Microsoft.WinGet/Package
+    name: NuGet
+    properties:
+      id: Microsoft.NuGet
+      source: winget
+      useLatest: false
+    metadata:
+      description: Install NuGet
+  - type: Microsoft.WinGet/Package
+    name: ripgrep
+    properties:
+      id: BurntSushi.ripgrep.MSVC
+      source: winget
+      useLatest: false
+    metadata:
+      description: Install ripgrep
+  - type: Microsoft.WinGet/Package
+    name: Starship
+    properties:
+      id: Starship.Starship
+      source: winget
+      useLatest: false
+    metadata:
+      winget:
+        securityContext: elevated
+      description: Install Starship
+  - type: Microsoft.WinGet/Package
+    name: Sysinternals
+    properties:
+      id: Microsoft.Sysinternals.Suite
+      source: winget
+      useLatest: false
+    metadata:
+      description: Install Sysinternals Suite
+  - type: Microsoft.WinGet/Package
+    name: zoxide
+    properties:
+      id: ajeetdsouza.zoxide
+      source: winget
+      useLatest: false
+    metadata:
+      description: Install zoxide
+  - type: Microsoft.WinGet/Package
+    name: PowerShell
+    properties:
+      id: Microsoft.PowerShell
+      source: winget
+      useLatest: false
+    metadata:
+      description: Install PowerShell 7
+  - type: Microsoft.DSC.Transitional/PowerShellScript
+    name: posh-git
+    dependsOn:
+      - PowerShell
+    properties:
+      testScript: |
+        $ErrorActionPreference = 'Stop'
+        [bool](Get-InstalledModule | Where-Object { $_.Name -eq 'posh-git' })
+      setScript: |
+        $ErrorActionPreference = 'Stop'
+        if (-not (Get-InstalledModule | Where-Object { $_.Name -eq 'posh-git' })) {
+            Install-Module -Name posh-git -Repository PSGallery -Scope CurrentUser -Force
+        }
+    metadata:
+      winget:
+        securityContext: current
+      description: Install posh-git from PowerShell Gallery
+  - type: Microsoft.DSC.Transitional/PowerShellScript
+    name: PSFzf
+    dependsOn:
+      - PowerShell
+    properties:
+      testScript: |
+        $ErrorActionPreference = 'Stop'
+        [bool](Get-InstalledModule | Where-Object { $_.Name -eq 'PSFzf' })
+      setScript: |
+        $ErrorActionPreference = 'Stop'
+        if (-not (Get-InstalledModule | Where-Object { $_.Name -eq 'PSFzf' })) {
+            Install-Module -Name PSFzf -Repository PSGallery -Scope CurrentUser -Force
+        }
+    metadata:
+      winget:
+        securityContext: current
+      description: Install PSFzf from PowerShell Gallery

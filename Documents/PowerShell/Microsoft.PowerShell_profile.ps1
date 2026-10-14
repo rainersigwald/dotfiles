@@ -16,13 +16,24 @@ if ($host.Name -eq 'ConsoleHost')
     Set-PSReadlineKeyHandler -Chord Tab -Function MenuComplete
 }
 
-function FdWithMyArguments {
-    fd.exe --type file --hidden --no-ignore-vcs $args
+$fdCommand = Get-Command -Name fd.exe, fd, fdfind -CommandType Application -ErrorAction SilentlyContinue |
+    Select-Object -First 1
+if ($fdCommand) {
+    function FdWithMyArguments {
+        & $fdCommand --type file --hidden --no-ignore-vcs $args
+    }
+
+    Set-Alias -Name fd -Value FdWithMyArguments
+
+    $fdCompletion = & $fdCommand --gen-completions powershell
+    if ($LASTEXITCODE -eq 0 -and $fdCompletion) {
+        Invoke-Expression ($fdCompletion -join "`n")
+    } else {
+        Write-Warning "fd completion generation failed with exit code $LASTEXITCODE"
+    }
+} else {
+    Write-Warning "fd was not found; skipping fd alias and completion setup."
 }
-
-Set-Alias -Name fd -Value FdWithMyArguments
-
-. ~\scoop\apps\fd\current\autocomplete\fd.ps1
 
 function TaskWarriorInWsl {
     wsl task $args

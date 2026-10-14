@@ -1,30 +1,12 @@
 {{ if eq .chezmoi.os "windows" -}}
 
-scoop install ^
-    7zip ^
-    azure-cli ^
-    azurestorageexplorer ^
-    bat ^
-    delta ^
-    difftastic ^
-    fd ^
-    fzf ^
-    gh ^
-    graphviz ^
-    gsudo ^
-    hyperfine ^
-    ilspy ^
-    jq ^
-    less ^
-    nuget ^
-    posh-git ^
-    PSFzf ^
-    ripgrep ^
-    starship ^
-    sysinternals ^
-    zoxide ^
+setlocal
+rem configuration: {{ include "Windows/configuration.winget" | sha256sum }}
 
+winget.exe configure --file "{{ joinPath .chezmoi.sourceDir "Windows" "configuration.winget" }}" --accept-configuration-agreements --disable-interactivity
+if not "%errorlevel%"=="0" exit /b %errorlevel%
 
-az extension add --name azure-devops
+powershell.exe -NoProfile -Command "$ErrorActionPreference = 'Stop'; $env:PATH = [Environment]::GetEnvironmentVariable('PATH', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('PATH', 'User') + ';' + $env:PATH; az extension add --name azure-devops; exit $LASTEXITCODE"
+exit /b %errorlevel%
 
 {{ end -}}

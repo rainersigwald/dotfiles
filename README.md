@@ -3,13 +3,14 @@ Configuration for my user-profile needs.
 
 ## Windows
 ```powershell
+winget configure --enable
 winget install --id Git.Git -e --source winget
+winget install --id twpayne.chezmoi -e --source winget
+winget install --id Microsoft.PowerShell -e --source winget
+```
 
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-irm get.scoop.sh | iex
-
-scoop install chezmoi
-
+Open a new PowerShell 7 session so the installed commands are on PATH, then run:
+```powershell
 chezmoi init --apply rainersigwald
 ```
 
