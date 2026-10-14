@@ -1,12 +1,13 @@
-# Install Scoop itself
+$ErrorActionPreference = 'Stop'
 
 Set-ExecutionPolicy RemoteSigned -scope CurrentUser
 
-Invoke-Expression (new-object net.webclient).downloadstring('https://get.scoop.sh')
-
-if ($null -eq (Get-Command "git.exe" -ErrorAction SilentlyContinue))
-{
-   Write-Error "Install git manually before running this script: https://git-scm.com/download/win"
+foreach ($id in 'Git.Git', 'twpayne.chezmoi', 'Microsoft.PowerShell') {
+    winget.exe install --id $id --exact --source winget --no-upgrade --accept-package-agreements --accept-source-agreements
+    # WinGet reports an already-installed package as a nonzero no-op.
+    if ($LASTEXITCODE -notin 0, -1978335189, -1978335135) {
+        throw "WinGet installation of $id failed with exit code $LASTEXITCODE"
+    }
 }
 
 setx FZF_DEFAULT_COMMAND "fd --type file --hidden --no-ignore --no-ignore-vcs"
