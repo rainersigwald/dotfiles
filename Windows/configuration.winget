@@ -82,16 +82,6 @@ resources:
         securityContext: elevated
       description: Install GitHub CLI
   - type: Microsoft.WinGet/Package
-    name: Graphviz
-    properties:
-      id: Graphviz.Graphviz
-      source: winget
-      useLatest: false
-    metadata:
-      winget:
-        securityContext: elevated
-      description: Install Graphviz
-  - type: Microsoft.WinGet/Package
     name: gsudo
     properties:
       id: gerardog.gsudo
