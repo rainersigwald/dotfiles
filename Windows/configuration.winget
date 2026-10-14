@@ -5,15 +5,14 @@ metadata:
       identifier: dscv3
 resources:
   - type: Microsoft.WinGet/Package
-    name: SevenZip
+    name: NanaZip
     properties:
-      id: 7zip.7zip
-      source: winget
+      id: 9N8G7TSCL18R
+      source: msstore
+      acceptAgreements: true
       useLatest: false
     metadata:
-      winget:
-        securityContext: elevated
-      description: Install 7-Zip
+      description: Install NanaZip from Microsoft Store
   - type: Microsoft.WinGet/Package
     name: AzureCLI
     properties:
