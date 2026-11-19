@@ -13,6 +13,10 @@ else
   alias fd="fd --no-ignore"
 fi
 
+if (( $+commands[batcat] )); then
+  alias bat="batcat"
+fi
+
 # Windows CLI compat
 dir() {
   ls "$@"
