@@ -7,7 +7,11 @@ path+=~/bin
 path+=~/.cargo/bin
 path+=~/.dotnet/tools
 
-alias fd="fd --no-ignore"
+if (( $+commands[fdfind] )); then
+  alias fd="fdfind --no-ignore"
+else
+  alias fd="fd --no-ignore"
+fi
 
 # Windows CLI compat
 dir() {
