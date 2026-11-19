@@ -3,6 +3,8 @@
 
 curl -sS https://starship.rs/install.sh | sh
 
+curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh -s -- --no-up-arrow --sync off --yes
+
 # PowerShell isn't in Ubuntu's repos; register Microsoft's package repo (PMC) and install it.
 if ! command -v pwsh > /dev/null 2>&1; then
     . /etc/os-release
